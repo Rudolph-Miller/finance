@@ -20,7 +20,7 @@ start = (route, handle) ->
         query = qs.parse body
         route(handle, path, res, query, em)
     else
-      query = url_parts.query
+      query = qs.parse url_parts.query
       route(handle, path, res, query)
 
   server = http.createServer(onRequest)

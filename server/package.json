@@ -3,6 +3,9 @@
 		"version": "0.0.0",
 		"description": "",
 		"devDependencies": {
+			"request": "*",
+			"jsdom": "*",
+			"jquery": "*",
 			"hamljs": "*",
 			"coffee-script": "*",
 			"socket.io": "*",

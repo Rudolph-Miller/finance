@@ -1,1 +1,11 @@
-%p this is index page
+%p get code data
+.input_area
+  %label code
+  %input#code{type: 'text'}
+  %input.btn.btn-default#code_submit{type: 'submit'}
+
+%ul#result{style: "display: none;"}
+  %table.table
+    %tr
+      %th code
+      %th price

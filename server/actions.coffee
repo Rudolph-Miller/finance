@@ -42,3 +42,17 @@ $("#logout").click ->
       $("#user_name").html('')
       toggleLogin()
     error: (err) -> console.log err
+
+$("#code_submit").click ->
+  data =
+    code: $("#code").val()
+  $.ajax
+    url: 'get_data'
+    type: 'get'
+    data: data
+    success: (data) ->
+      $("#result").css block
+      $("#result_area").css block
+      code = data.code
+      price = data.price
+      li = $("#result table").append("<tr><td>#{code}</td><td>#{price}</td></tr>")
