@@ -1,0 +1,12 @@
+{
+	"name": "finance_server",
+		"version": "0.0.0",
+		"description": "",
+		"devDependencies": {
+			"hamljs": "*",
+			"coffee-script": "*",
+			"socket.io": "*",
+			"aws-sdk": "*",
+			"async": "*"
+		}
+}

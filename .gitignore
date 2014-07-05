@@ -1,0 +1,5 @@
+*.swp
+*.lib
+*.fas
+node_modules/
+tmp/
