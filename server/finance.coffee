@@ -1,11 +1,17 @@
 request = require 'request'
 jsdom = require 'jsdom'
 jquery = require 'jquery'
+login_user = require('./server').login_user
+session = require './session'
+user = require './user'
 
 getData = (res, query) ->
   code = query.code
-  uri = "http://stocks.finance.yahoo.co.jp/stocks/detail/?code=#{query.code}"
-  console.log uri
+  current_session = query.current_session
+  session.login_p current_session, (user_name) ->
+    if  user_name
+      user.saveCode user_name, code
+  uri = "http://stocks.finance.yahoo.co.jp/stocks/detail/?code=#{code}"
   options =
     uri: uri
   request.get options, (err, response, body) ->

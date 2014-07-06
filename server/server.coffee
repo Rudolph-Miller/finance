@@ -4,11 +4,11 @@ url = require 'url'
 haml = require 'hamljs'
 qs =  require 'querystring'
 events = require 'events'
+session = require './session'
 
 port = 8888
 
 start = (route, handle) ->
-  em = new events.EventEmitter
   onRequest = (req, res) ->
     res.setHeader 'Access-Control-Allow-Origin', '*'
     url_parts = url.parse(req.url)
@@ -18,10 +18,14 @@ start = (route, handle) ->
       req.on 'data', (data) -> body += data
       req.on 'end', ->
         query = qs.parse body
-        route(handle, path, res, query, em)
+        session.current_session req, (current_session) ->
+          query.current_session = current_session
+          route(handle, path, res, query)
     else
       query = qs.parse url_parts.query
-      route(handle, path, res, query)
+      session.current_session req, (current_session) ->
+        query.current_session = current_session
+        route(handle, path, res, query)
 
   server = http.createServer(onRequest)
   server.listen port
